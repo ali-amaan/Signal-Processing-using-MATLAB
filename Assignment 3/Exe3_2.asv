@@ -1,0 +1,11 @@
+function [A,b,a] = Exe3_2(A_mono,fs,fs_new)
+% Replace all this. Return signal and the filter coefficients. Use low pass signal 
+n = 6;
+fs = 44100; fs_new = 22050;
+Wp = /fs_new;
+Rp = 2;
+Rs = 100;
+[b,a] = ellip(n,Rp,Rs,Wp,'low');
+freqz(b,a);
+
+A = filter(b,a,A_mono);

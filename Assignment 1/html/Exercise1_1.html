@@ -1,0 +1,277 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Exercise1_1</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-01-18"><meta name="DC.source" content="Exercise1_1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">How to import audio data</a></li><li><a href="#2">Analysing audio signal in time domain</a></li><li><a href="#3">Playing audio signal</a></li><li><a href="#4">Task a) (replace 0 with a correct answer)</a></li><li><a href="#5">Task b)</a></li><li><a href="#6">Task c)</a></li><li><a href="#7">d)</a></li></ul></div><h2 id="1">How to import audio data</h2><pre class="codeinput">audio_file = <span class="string">'Guitar.wav'</span>;        <span class="comment">% Save path to tha audio file to a string</span>
+[signal, fs] = audioread(audio_file); <span class="comment">% Read audio file to vector and its' sampling frequency to fs</span>
+</pre><h2 id="2">Analysing audio signal in time domain</h2><pre class="codeinput">audioinfo(audio_file)   <span class="comment">% Prints information about a audio file</span>
+
+figure(1)               <span class="comment">% New figure</span>
+plot(signal)            <span class="comment">% Plot the mono audio signal to figure(1)</span>
+
+grid <span class="string">on</span>                 <span class="comment">% Draws gridlines to the figure(1)</span>
+xlabel(<span class="string">'Samples'</span>)       <span class="comment">% Label the x-axis of the plot</span>
+ylabel(<span class="string">'Amlitude'</span>)      <span class="comment">% Label the y-axis of the plot</span>
+title(audio_file)       <span class="comment">% Give a tittle to the plot</span>
+axis([0 length(signal) min(signal) max(signal)]) <span class="comment">% Zooms to the plot</span>
+</pre><pre class="codeoutput">
+ans = 
+
+  struct with fields:
+
+             Filename: 'E:\Ali\Aalto University\Semester 4\Computer Lab in Digital Signal Processing\Assignment 1\Guitar.wav'
+    CompressionMethod: 'Uncompressed'
+          NumChannels: 1
+           SampleRate: 48000
+         TotalSamples: 192000
+             Duration: 4
+                Title: []
+              Comment: []
+               Artist: []
+        BitsPerSample: 16
+
+</pre><img vspace="5" hspace="5" src="Exercise1_1_01.png" alt=""> <h2 id="3">Playing audio signal</h2><pre class="codeinput">gain = 1;                <span class="comment">% Try different values to gain and see how it affect the played audio</span>
+soundsc(gain*signal, fs) <span class="comment">% Scales signal to 1 and plays it with correct sampling frequency</span>
+<span class="comment">%sound(gain*signal, fs)   % Plays signal with original amplitude and sampling frequency</span>
+</pre><h2 id="4">Task a) (replace 0 with a correct answer)</h2><p>What is the sampling frequency of 'signal'?</p><pre class="codeinput">sampling_frequency = 48000 <span class="comment">% This is essentially the same as variable 'fs'</span>
+
+<span class="comment">% How long the 'signal' is in second?</span>
+length_in_seconds = 4
+
+<span class="comment">% What are the maximum and minimum values of the 'signal' and corresponding</span>
+<span class="comment">% indexes that those values occur?</span>
+
+signal_max = 0.6174
+signal_min = -0.8911
+signal_max_idx = 85970
+signal_min_idx = 86080
+</pre><pre class="codeoutput">
+sampling_frequency =
+
+       48000
+
+
+length_in_seconds =
+
+     4
+
+
+signal_max =
+
+    0.6174
+
+
+signal_min =
+
+   -0.8911
+
+
+signal_max_idx =
+
+       85970
+
+
+signal_min_idx =
+
+       86080
+
+</pre><h2 id="5">Task b)</h2><p>Generate a signal named 'signal_a' that is same as 'signal' but it is reversed and scaled to 1</p><pre class="codeinput">signal_a = flipud(signal);
+gain = 1;                <span class="comment">% Try different values to gain and see how it affect the played audio</span>
+soundsc(gain*signal_a, fs)
+
+<span class="comment">%figure(2)               % New figure</span>
+<span class="comment">%plot(signal_a)            % Plot the mono audio signal to figure(2)</span>
+
+<span class="comment">%grid on                 % Draws gridlines to the figure(2)</span>
+<span class="comment">%xlabel('Samples')       % Label the x-axis of the plot</span>
+<span class="comment">%ylabel('Amlitude')      % Label the y-axis of the plot</span>
+<span class="comment">%title(audio_file)       % Give a tittle to the plot</span>
+<span class="comment">%axis([0 length(signal_a) min(signal_a) max(signal_a)]) % Zooms to the plot</span>
+</pre><h2 id="6">Task c)</h2><p>Generate a vector that is equally long as 'signal' that grows linearly from 0 to 1 and element-wise multiply 'signal' with it to generate 'signal_b'. Scale 'signal_b' also to 1.</p><pre class="codeinput">vector_b = linspace(0,1,192000);
+<span class="keyword">for</span> i = 1:length(signal)
+    signal_b(i) = signal(i)*vector_b(i);
+<span class="keyword">end</span>
+gain = 1;                <span class="comment">% Try different values to gain and see how it affect the played audio</span>
+soundsc(gain*signal_b, fs)
+
+
+<span class="comment">%figure(2)               % New figure</span>
+<span class="comment">%plot(signal_b)            % Plot the mono audio signal to figure(2)</span>
+
+<span class="comment">%grid on                 % Draws gridlines to the figure(2)</span>
+<span class="comment">%xlabel('Samples')       % Label the x-axis of the plot</span>
+<span class="comment">%ylabel('Amlitude')      % Label the y-axis of the plot</span>
+<span class="comment">%title(audio_file)       % Give a tittle to the plot</span>
+<span class="comment">%axis([0 length(signal_b) min(signal_b) max(signal_b)]) % Zooms to the plot</span>
+</pre><h2 id="7">d)</h2><p>Plot 'signal_a' and 'signal_b' to same figure but in different graphs using subplot() so that 'signal_a' is on top of 'signal_b' and y-axises are amplitude and x-axises are time in seconds. Name the plots and all axises. Also set the axises so that there is no unnecessary space in the plots.</p><pre class="codeinput">time = (1:length(signal))/fs;
+figure(3)
+subplot(2,1,1)
+plot(time, signal_a), xlabel(<span class="string">'Time(s)'</span>), ylabel(<span class="string">'Amplitude'</span>), axis([0 4 min(signal_a) max(signal_a)])
+title(<span class="string">'signal_a'</span>)
+subplot(2,1,2)
+plot(time, signal_b), xlabel(<span class="string">'Time(s)'</span>), ylabel(<span class="string">'Amplitude'</span>), axis([0 4 min(signal_b) max(signal_b)])
+title(<span class="string">'signal_b'</span>)
+</pre><img vspace="5" hspace="5" src="Exercise1_1_02.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% How to import audio data
+audio_file = 'Guitar.wav';        % Save path to tha audio file to a string  
+[signal, fs] = audioread(audio_file); % Read audio file to vector and its' sampling frequency to fs
+
+%% Analysing audio signal in time domain
+audioinfo(audio_file)   % Prints information about a audio file
+
+figure(1)               % New figure
+plot(signal)            % Plot the mono audio signal to figure(1)
+        
+grid on                 % Draws gridlines to the figure(1)
+xlabel('Samples')       % Label the x-axis of the plot
+ylabel('Amlitude')      % Label the y-axis of the plot
+title(audio_file)       % Give a tittle to the plot
+axis([0 length(signal) min(signal) max(signal)]) % Zooms to the plot
+
+
+%% Playing audio signal
+
+gain = 1;                % Try different values to gain and see how it affect the played audio
+soundsc(gain*signal, fs) % Scales signal to 1 and plays it with correct sampling frequency
+%sound(gain*signal, fs)   % Plays signal with original amplitude and sampling frequency
+
+
+%% Task a) (replace 0 with a correct answer)
+% What is the sampling frequency of 'signal'?
+sampling_frequency = 48000 % This is essentially the same as variable 'fs'
+
+% How long the 'signal' is in second?
+length_in_seconds = 4
+
+% What are the maximum and minimum values of the 'signal' and corresponding
+% indexes that those values occur?
+
+signal_max = 0.6174
+signal_min = -0.8911
+signal_max_idx = 85970
+signal_min_idx = 86080
+
+%% Task b)
+% Generate a signal named 'signal_a' that is same as 'signal' but it is
+% reversed and scaled to 1
+
+signal_a = flipud(signal);
+gain = 1;                % Try different values to gain and see how it affect the played audio
+soundsc(gain*signal_a, fs)
+
+%figure(2)               % New figure
+%plot(signal_a)            % Plot the mono audio signal to figure(2)
+        
+%grid on                 % Draws gridlines to the figure(2)
+%xlabel('Samples')       % Label the x-axis of the plot
+%ylabel('Amlitude')      % Label the y-axis of the plot
+%title(audio_file)       % Give a tittle to the plot
+%axis([0 length(signal_a) min(signal_a) max(signal_a)]) % Zooms to the plot
+
+
+%% Task c)
+% Generate a vector that is equally long as 'signal' that grows linearly
+% from 0 to 1 and element-wise multiply 'signal' with it to generate
+% 'signal_b'. Scale 'signal_b' also to 1.
+
+vector_b = linspace(0,1,192000);
+for i = 1:length(signal)
+    signal_b(i) = signal(i)*vector_b(i);
+end
+gain = 1;                % Try different values to gain and see how it affect the played audio
+soundsc(gain*signal_b, fs)
+
+
+%figure(2)               % New figure
+%plot(signal_b)            % Plot the mono audio signal to figure(2)
+        
+%grid on                 % Draws gridlines to the figure(2)
+%xlabel('Samples')       % Label the x-axis of the plot
+%ylabel('Amlitude')      % Label the y-axis of the plot
+%title(audio_file)       % Give a tittle to the plot
+%axis([0 length(signal_b) min(signal_b) max(signal_b)]) % Zooms to the plot
+
+
+%% d) 
+% Plot 'signal_a' and 'signal_b' to same figure but in different graphs
+% using subplot() so that 'signal_a' is on top of 'signal_b' and y-axises
+% are amplitude and x-axises are time in seconds. Name the plots
+% and all axises. Also set the axises so that there is no unnecessary
+% space in the plots.
+time = (1:length(signal))/fs;
+figure(3)
+subplot(2,1,1)
+plot(time, signal_a), xlabel('Time(s)'), ylabel('Amplitude'), axis([0 4 min(signal_a) max(signal_a)])
+title('signal_a')
+subplot(2,1,2)
+plot(time, signal_b), xlabel('Time(s)'), ylabel('Amplitude'), axis([0 4 min(signal_b) max(signal_b)])
+title('signal_b')
+
+##### SOURCE END #####
+--></body></html>
